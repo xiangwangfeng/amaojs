@@ -1,0 +1,1 @@
+Cloud code project for amaojs. Cloud Code Guide: https://cn.avoscloud.com/docs/cloud_code_guide.html
