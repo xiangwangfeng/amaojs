@@ -1,0 +1,35 @@
+<html>
+<head>
+<script>
+
+function firstQuery()
+{
+    var queryString = window.location.search.substring(1)
+    return  decodeURIComponent(queryString.split("=")[1])
+}
+
+function draw()
+{
+	var image = new Image(78,78)
+	image.src = './a.jpg'
+	var canvas = document.getElementById("canvas")
+	var context = canvas.getContext("2d")
+
+	image.onload = function()
+	{
+		var param = firstQuery()
+		context.drawImage(image,0,0,78,78)
+		alert(param)
+		context.textAlign = "center"
+		context.fillText(param,78/2,80,200)
+	}
+	
+}
+
+</script>
+</head>
+<body onload="draw()">
+<canvas id="canvas" width="78" height="200" onload="draw()">
+</canvas>
+</body>
+</html>
