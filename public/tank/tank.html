@@ -16,8 +16,7 @@
 
 	window.onload = function(){
 		tank = document.getElementById("tank");
-		tank.style.left = "0px";
-		tank.style.top = "0px";
+
 	}
 	window.onkeydown = function(event){
 		var code = event.keyCode;
@@ -50,7 +49,7 @@
 </head>
 <body>
 <div id="battle">
-<img id="tank" src="./tank_right.png" width="64" height="64"/>
+<img id="tank" src="./tank_right.png" width="64" height="64" style="left:0px;top:0px"/>
 </div>
 </canvas>
 </body>
