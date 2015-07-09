@@ -1,0 +1,67 @@
+<html>
+<head>
+<script>
+	var queens = [];
+	for(var i = 0; i < 8; i++)
+		queens[i] = 0;
+	var shouldReturn = false;
+
+	function isOK(n)
+	{
+		var ok = true;
+		for(var i = 0; i < n; i++)
+		{
+			var diff = Math.abs(queens[n] - queens[i])
+			if(diff == 0 || diff == n - i)
+			{
+				ok = false;
+				break;
+			}
+		}
+		return ok;
+	}
+
+	function sort(n)
+	{
+		if (shouldReturn) 
+		{
+			return;
+		};
+
+		if(n == 8)
+		{
+
+			alert(queens);
+			shouldReturn = true;
+			return;
+		}
+
+		for(var i = 0; i < 8; i++)
+		{
+			queens[n] = i;
+
+			if(isOK(n))
+			{
+				sort(n+1);
+			}
+			else
+			{
+				continue;
+			}
+		}
+		queens[n] = 0;
+
+	}
+
+	window.onload = function()
+	{
+		sort(0);
+
+	}
+
+
+</script>
+</head>
+<body>
+</body>
+</html>
