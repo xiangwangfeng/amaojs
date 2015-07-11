@@ -1,10 +1,14 @@
 <html>
 <head>
+<style>
+*{margin:0px;padding:0px;}
+#canvas {width: 100%; height: 100%;background-color: #ccc}
+</style>
 <script>
 	var queens = [];
 	for(var i = 0; i < 8; i++)
 		queens[i] = 0;
-	var shouldReturn = false;
+	var results = [];
 
 	function isOK(n)
 	{
@@ -23,16 +27,9 @@
 
 	function sort(n)
 	{
-		if (shouldReturn) 
-		{
-			return;
-		};
-
 		if(n == 8)
 		{
-
-			alert(queens);
-			shouldReturn = true;
+			results.push(queens.concat());
 			return;
 		}
 
@@ -53,15 +50,28 @@
 
 	}
 
+	function draw()
+	{
+		var element = document.getElementById("canvas");
+		for (var i = 0; i < results.length; i++) {
+			var line = results[i];
+			var child = document.createElement("div");
+			var divContent = line.join();
+			child.innerHTML = divContent;
+			element.appendChild(child);
+		};
+	}
+
 	window.onload = function()
 	{
 		sort(0);
-
+		draw();
 	}
 
 
 </script>
 </head>
 <body>
+<div id="canvas" />
 </body>
 </html>
