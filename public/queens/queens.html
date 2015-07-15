@@ -8,22 +8,22 @@
 		queens[i] = 0;
 	var results = [];
 
-	function isOK(n)
+	function areAllQueensHappy(n)
 	{
-		var ok = true;
+		var happy = true;
 		for(var i = 0; i < n; i++)
 		{
 			var diff = Math.abs(queens[n] - queens[i])
 			if(diff == 0 || diff == n - i)
 			{
-				ok = false;
+				happy = false;
 				break;
 			}
 		}
-		return ok;
+		return happy;
 	}
 
-	function sort(n)
+	function putQueens(n)
 	{
 		if(n == 8)
 		{
@@ -35,9 +35,9 @@
 		{
 			queens[n] = i;
 
-			if(isOK(n))
+			if(areAllQueensHappy(n))
 			{
-				sort(n+1);
+				putQueens(n+1);
 			}
 			else
 			{
@@ -48,22 +48,44 @@
 
 	}
 
-	function draw()
+	function drawQueens()
 	{
 		var element = document.getElementById("canvas");
 		for (var i = 0; i < results.length; i++) {
 			var line = results[i];
+
+			var title = document.createElement("h1");
+			title.innerHTML = "answer " + (i + 1);
+			title.style.position = "relative";
+			title.style.top = i * 10;
+			element.appendChild(title);
+
 			var child = document.createElement("div");
-			var divContent = line.join();
-			child.innerHTML = divContent;
+			child.style.width = "512";
+			child.style.height= "512";
+			child.style.backgroundColor = "#ccc";
+			child.style.position = "relative";
+			child.style.top = i * 10;
+
+			for (var j =0; j < 8; j++){
+				for (var k = 0; k < 8; k++) {
+					var image = document.createElement("img");
+					image.style.width = "64";
+					image.style.height= "64";
+					if (line[j] == k) {
+						image.src = "./queen.png";
+					};
+					child.appendChild(image);
+				};
+			}
 			element.appendChild(child);
 		};
 	}
 
 	window.onload = function()
 	{
-		sort(0);
-		draw();
+		putQueens(0);
+		drawQueens();
 	}
 
 
