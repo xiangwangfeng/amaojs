@@ -1,6 +1,23 @@
 <html>
 <head>
 <style>
+.item
+{
+	width: 64px;
+	height: 64px;
+}
+.title
+{
+	position: relative;
+}
+
+.canvas
+{
+	position: relative;
+	background-color: #ccc;
+	width: 512px;
+	height: 512px;
+}
 </style>
 <script>
 	var queens = [];
@@ -55,23 +72,19 @@
 			var line = results[i];
 
 			var title = document.createElement("h1");
+			title.className = "title";
 			title.innerHTML = "answer " + (i + 1);
-			title.style.position = "relative";
 			title.style.top = i * 10;
 			element.appendChild(title);
 
 			var child = document.createElement("div");
-			child.style.width = "512";
-			child.style.height= "512";
-			child.style.backgroundColor = "#ccc";
-			child.style.position = "relative";
+			child.className = "canvas";
 			child.style.top = i * 10;
 
 			for (var j =0; j < 8; j++){
 				for (var k = 0; k < 8; k++) {
 					var image = document.createElement("img");
-					image.style.width = "64";
-					image.style.height= "64";
+					image.className = "item";
 					if (line[j] == k) {
 						image.src = "./queen.png";
 					};
