@@ -1,0 +1,43 @@
+<html>
+<head>
+<style>
+*{margin:0px;padding:0px;}
+#battle {width: 100%; height: 100%;background-color: #ccc}
+#snake {position: absolute;}
+</style>
+<script>
+	var snake = null;
+	var directions = {left:0,up:1,right:2,down:3};
+	var direction = directions.left;
+
+
+	window.onload = function(){
+		
+
+
+	}
+	window.onkeydown = function(event){
+		var code = event.keyCode;
+		switch(code){
+					case 37://left
+						direction = directions.left;
+					break;
+					case 38://up
+						direction = directions.up;
+					break;
+					case 39://right
+						direction = directions.right;
+					break;
+					case 40://down
+						direction = directions.down;
+					break;
+	}
+
+</script>
+</head>
+<body>
+<div id="battle">
+</div>
+</canvas>
+</body>
+</html>
