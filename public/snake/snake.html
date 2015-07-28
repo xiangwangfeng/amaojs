@@ -3,19 +3,32 @@
 <style>
 *{margin:0px;padding:0px;}
 #battle {width: 100%; height: 100%;background-color: #ccc}
-#snake {position: absolute;}
+.snake {position: absolute; background-color: #ff0000}
 </style>
 <script>
-	var snake = null;
+	var snake = [];
 	var directions = {left:0,up:1,right:2,down:3};
-	var direction = directions.left;
+	var direction = directions.right;
 
 
 	window.onload = function(){
-		
+		var battle = document.getElementById("battle");
 
+		for (var i = 0; i < 10; i++) {
+			var element = document.createElement("img");
+			element.className = "snake";
+			//element.src = "./item.jpg";
+			element.style.width = 20;
+			element.style.height= 20;
+			element.style.top = "0px";
+			element.style.left= (20 * i) + "px";
+			snake.push(element);
+			battle.appendChild(element);
+		};
 
+		setInterval(move, 200);
 	}
+
 	window.onkeydown = function(event){
 		var code = event.keyCode;
 		switch(code){
@@ -31,13 +44,35 @@
 					case 40://down
 						direction = directions.down;
 					break;
+				}
+	}
+
+	function move()
+	{
+		for (var i = 0; i < snake.length - 1; i++) {
+			snake[i].style.top = snake[i + 1].style.top;
+			snake[i].style.left= snake[i + 1].style.left;
+		};
+		var lastItem = snake[snake.length - 1];
+		switch(direction){
+			case directions.left:
+				lastItem.style.left = (parseInt(lastItem.style.left) - 20) + "px";
+			break;
+			case directions.right:
+				lastItem.style.left = (parseInt(lastItem.style.left) + 20) + "px";
+			break;
+			case directions.up:
+				lastItem.style.top = (parseInt(lastItem.style.top) - 20) + "px";
+			break;
+			case directions.down:
+				lastItem.style.top = (parseInt(lastItem.style.top) + 20) + "px";
+			break;
+		}
 	}
 
 </script>
 </head>
 <body>
-<div id="battle">
-</div>
-</canvas>
+<div id="battle"/>
 </body>
 </html>
